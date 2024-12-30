@@ -1,0 +1,19 @@
+1. Backend:
+Project Setup - MongoDB
+Authentication - JSON Map Token
+User Controllers - Postman VS Code
+Post Controllers - Postman VS Code
+Notification Controllers - Postman VS Code
+
+2. UI Design - Tailwind CSS
+Hard Coded Data
+React Router Dom
+
+3. Connect - React Query
+Queries
+Mutations
+Hooks
+
+4. Deploy
+Setup the server
+render.com
