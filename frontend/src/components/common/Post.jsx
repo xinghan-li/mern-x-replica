@@ -6,17 +6,14 @@ import { FaTrash } from "react-icons/fa";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import toast from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import LoadingSpinner from "./LoadingSpinner";
 import { formatPostDate } from "../../utils/date";
 
 const Post = ({ post }) => {
     const [comment, setComment] = useState("");
-    const { data: authUser } = useQuery({
-        queryKey: ["authUser"],
-    });
+    const { data: authUser } = useQuery({ queryKey: ["authUser"] });
     const queryClient = useQueryClient();
-
     const postOwner = post.user;
     const isLiked = post.likes.includes(authUser?._id);
 
@@ -35,6 +32,7 @@ const Post = ({ post }) => {
                 if (!res.ok) {
                     throw new Error(data.error || "Something went wrong");
                 }
+                return data;
             } catch (error) {
                 throw new Error(error);
             }
@@ -53,7 +51,6 @@ const Post = ({ post }) => {
                     method: "POST",
                 });
                 const data = await res.json();
-
                 if (!res.ok) {
                     throw new Error(data.error || "Something went wrong");
                 }
@@ -136,7 +133,7 @@ const Post = ({ post }) => {
                 <div className='avatar'>
                     <Link
                         to={`/profile/${postOwner.username}`}
-                        className='w-8 rounded-full overflow-hidden'
+                        className='w-8 h-8 rounded-full overflow-hidden'
                     >
                         <img
                             src={
@@ -309,7 +306,7 @@ const Post = ({ post }) => {
                                     className={`text-sm group-hover:text-pink-500 ${
                                         isLiked
                                             ? "text-pink-500"
-                                            : " text-slate-500"
+                                            : "text-slate-500"
                                     }`}
                                 >
                                     {post.likes.length}
