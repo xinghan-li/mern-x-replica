@@ -1,6 +1,6 @@
 Features in my X replica:
 
-⚛️ Tech Stack: React.js, MongoDB, Node.js, Express, Tailwind
+⚛️ Tech Stack: React.js, MongoDB, Node.js, Express, Tailwind \n
 🔐 Authentication with JSONWEBTOKENS (JWT)
 🔥 React Query for Data Fetching, Caching etc.
 👥 Suggested Users to Follow
