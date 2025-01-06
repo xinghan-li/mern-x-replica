@@ -3,8 +3,8 @@ Visit: https://mern-x-replica.onrender.com
 For Demo, rendering may take 30 - 50 seconds.
 Please use:
 
--username: guest
--password: Guest2025
+- username: guest
+- password: Guest2025
 
 For full experience
 
