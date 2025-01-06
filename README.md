@@ -1,3 +1,13 @@
+Visit: https://mern-x-replica.onrender.com
+
+For Demo, rendering may take 30 - 50 seconds.
+Please use:
+
+username: guest
+password: Guest2025
+
+For full experience
+
 Features in my X replica:
 
 - ⚛️ Tech Stack: React.js, MongoDB, Node.js, Express, Tailwind CSS
@@ -16,3 +26,5 @@ Features in my X replica:
 - 🌐 Deployment
 
 
+Acknowledgement
+This is a practice repo inspired by Mr. Orkmez's YouTube channel [As a Programmer].
