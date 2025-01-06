@@ -1,7 +1,7 @@
 import { FaRegComment } from "react-icons/fa";
 import { BiRepost } from "react-icons/bi";
-import { FaRegHeart } from "react-icons/fa";
-import { FaRegBookmark } from "react-icons/fa6";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
+import { FaRegBookmark, FaBookmark } from "react-icons/fa6";
 import { FaTrash } from "react-icons/fa";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -12,6 +12,8 @@ import { formatPostDate } from "../../utils/date";
 
 const Post = ({ post }) => {
     const [comment, setComment] = useState("");
+    const [isRetweeted, setIsRetweeted] = useState(false);
+    const [isBookmarked, setIsBookmarked] = useState(false);
     const { data: authUser } = useQuery({ queryKey: ["authUser"] });
     const queryClient = useQueryClient();
     const postOwner = post.user;
@@ -122,9 +124,23 @@ const Post = ({ post }) => {
         commentPost();
     };
 
+    const handleRetweet = () => {
+        setIsRetweeted(!isRetweeted);
+        toast("Feature coming soon", {
+            icon: "🚧",
+        });
+    };
+
     const handleLikePost = () => {
         if (isLikePending) return; // prevent multiple clicks
         likePost();
+    };
+
+    const handleBookmarkClick = () => {
+        setIsBookmarked(!isBookmarked);
+        toast("Feature coming soon", {
+            icon: "🚧",
+        });
     };
 
     return (
@@ -284,10 +300,25 @@ const Post = ({ post }) => {
                                     </button>
                                 </form>
                             </dialog>
-                            <div className='flex gap-1 items-center group cursor-pointer'>
-                                <BiRepost className='w-6 h-6  text-slate-500 group-hover:text-green-500' />
-                                <span className='text-sm text-slate-500 group-hover:text-green-500'>
-                                    0
+                            <div
+                                className='flex gap-1 items-center group cursor-pointer'
+                                onClick={handleRetweet}
+                            >
+                                <BiRepost
+                                    className={`w-6 h-6 ${
+                                        isRetweeted
+                                            ? "text-green-500 group-hover:text-slate-500"
+                                            : "text-slate-500 group-hover:text-green-500"
+                                    }`}
+                                />
+                                <span
+                                    className={`text-sm ${
+                                        isRetweeted
+                                            ? "text-green-500 group-hover:text-slate-500"
+                                            : "text-slate-500 group-hover:text-green-500"
+                                    }`}
+                                >
+                                    {isRetweeted ? 1 : 0}
                                 </span>
                             </div>
                             <div
@@ -299,7 +330,7 @@ const Post = ({ post }) => {
                                     <FaRegHeart className='w-4 h-4 cursor-pointer text-slate-500 group-hover:text-pink-500' />
                                 )}
                                 {isLiked && !isLikePending && (
-                                    <FaRegHeart className='w-4 h-4 cursor-pointer text-pink-500 ' />
+                                    <FaHeart className='w-4 h-4 cursor-pointer text-pink-500 ' />
                                 )}
 
                                 <span
@@ -314,7 +345,17 @@ const Post = ({ post }) => {
                             </div>
                         </div>
                         <div className='flex w-1/3 justify-end gap-2 items-center'>
-                            <FaRegBookmark className='w-4 h-4 text-slate-500 cursor-pointer' />
+                            {isBookmarked ? (
+                                <FaBookmark
+                                    className='w-4 h-4 text-blue-500 cursor-pointer'
+                                    onClick={handleBookmarkClick}
+                                />
+                            ) : (
+                                <FaRegBookmark
+                                    className='w-4 h-4 text-slate-500 cursor-pointer hover:text-blue-500'
+                                    onClick={handleBookmarkClick}
+                                />
+                            )}
                         </div>
                     </div>
                 </div>

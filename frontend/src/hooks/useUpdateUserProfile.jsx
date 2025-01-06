@@ -13,14 +13,13 @@ const useUpdateUserProfile = () => {
                         headers: {
                             "Content-Type": "application/json",
                         },
-                        body: JSON.stringify({
-                            formData,
-                        }),
+                        body: JSON.stringify(formData),
                     });
                     const data = await res.json();
                     if (!res.ok) {
                         throw new Error(data.error || "Something went wrong");
                     }
+
                     return data;
                 } catch (error) {
                     throw new Error(error.message);

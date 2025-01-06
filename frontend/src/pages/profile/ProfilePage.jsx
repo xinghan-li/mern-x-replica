@@ -51,7 +51,10 @@ const ProfilePage = () => {
         },
     });
 
-    const { isUpdatingProfile, updateProfile } = useUpdateUserProfile();
+    const { isUpdatingProfile, updateProfile } = useUpdateUserProfile({
+        coverImg,
+        profileImg,
+    });
 
     const isMyProfile = authUser?._id === user?._id;
     const memberSinceDate = formatMemberSinceDate(user?.createdAt);
@@ -186,8 +189,6 @@ const ProfilePage = () => {
                                                 coverImg,
                                                 profileImg,
                                             });
-                                            setProfileImg(null);
-                                            setCoverImg(null);
                                         }}
                                     >
                                         {isUpdatingProfile
